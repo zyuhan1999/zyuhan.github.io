@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuhan Zhu - Homepage</title>
+    <!-- Import Source Han Serif font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Reset and base styles */
         * {
@@ -107,7 +109,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 4px solid #0066cc;
+            border: 3px solid #0066cc;
             flex-shrink: 0;
             background-color: #f8f9fa;
             display: flex;
@@ -129,10 +131,17 @@
         }
 
         .name {
-            font-size: 1.75em;
+            font-size: 2em;
             margin-bottom: 0.2em;
             font-weight: 300;
-            font-family: 'Georgia', 'Times New Roman', 'SimSun', '宋体', serif;
+        }
+
+        .name-english {
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .name-chinese {
+            font-family: 'Noto Serif SC', '思源宋体', 'SimSun', '宋体', serif;
         }
 
         .name-native {
@@ -142,7 +151,7 @@
         .title {
             font-size: 1.1em;
             color: #333;
-            margin-bottom: 0.2em;
+            margin-bottom: 0.15em;
             font-style: normal;
             font-weight: 500;
         }
@@ -150,13 +159,13 @@
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 0.2em;
-            margin-bottom: 0.2em;
+            gap: 0.15em;
+            margin-bottom: 0.15em;
         }
 
         .contact-email {
             font-size: 1.1em;
-            margin-bottom: 0.5em;
+            margin-bottom: 0.2em;
         }
 
         .social-links {
@@ -607,7 +616,7 @@
                     <img src="IMG_9427.jpeg" alt="Profile Photo" onerror="this.style.display='none'; this.parentElement.innerHTML='👤';">
                 </div>
                 <div class="profile-info">
-                    <h1 class="name">Yuhan Zhu 朱宇涵</h1>
+                    <h1 class="name"><span class="name-english">Yuhan Zhu</span> <span class="name-chinese">朱宇涵</span></h1>
                     <div class="title">Ph.D. Student, Nanjing University</div>
                     <div class="contact-info">
                         <div class="contact-email">
@@ -1054,7 +1063,14 @@
 
         // Function to update personal info
         function updatePersonalInfo() {
-            document.querySelector('.name').textContent = siteData.personalInfo.name;
+            // Split the name into English and Chinese parts
+            const fullName = siteData.personalInfo.name;
+            const nameParts = fullName.split(' ');
+            const englishName = nameParts.slice(0, 2).join(' '); // "Yuhan Zhu"
+            const chineseName = nameParts.slice(2).join(' '); // "朱宇涵"
+            
+            document.querySelector('.name-english').textContent = englishName;
+            document.querySelector('.name-chinese').textContent = chineseName;
             document.querySelector('.contact-email span:last-child').textContent = siteData.personalInfo.email;
             document.querySelector('a[href*="scholar.google.com"]').href = siteData.personalInfo.googleScholar;
             document.querySelector('a[href*="github.com"]').href = siteData.personalInfo.github;
