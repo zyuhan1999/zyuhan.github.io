@@ -1039,22 +1039,32 @@
             container.innerHTML = siteData.about.bio.map(paragraph => `<p>${paragraph}</p>`).join('');
         }
 
-        // Visitor counter functionality
+        // Visitor counter functionality - counts every page refresh
         function updateVisitorCounter() {
-            let count = localStorage.getItem('visitorCount');
+            // Get current visit count from localStorage
+            let count = localStorage.getItem('totalVisitCount');
             if (!count) {
-                count = 1;
+                count = 1; // Start from 1 if no previous count
             } else {
-                count = parseInt(count) + 1;
+                count = parseInt(count) + 1; // Increment on every page load/refresh
             }
-            localStorage.setItem('visitorCount', count.toString());
+            
+            // Save updated count
+            localStorage.setItem('totalVisitCount', count.toString());
+            
+            // Display the count
             document.getElementById('visitor-count').textContent = count.toLocaleString();
         }
 
-        // Update last updated date
+        // Update last updated date - based on document's last modified time
         function updateLastUpdated() {
-            const lastUpdated = new Date();
-            const formattedDate = lastUpdated.toLocaleDateString('en-US', {
+            // Use document.lastModified which gives the file's last modification time
+            const lastModified = new Date(document.lastModified);
+            
+            // If document.lastModified is not available or invalid, use current date
+            const dateToUse = isNaN(lastModified.getTime()) ? new Date() : lastModified;
+            
+            const formattedDate = dateToUse.toLocaleDateString('en-US', {
                 month: '2-digit',
                 day: '2-digit',
                 year: 'numeric'
