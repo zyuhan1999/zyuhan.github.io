@@ -405,8 +405,16 @@
 
         .timeline-org {
             color: #555;
-            font-style: italic;
             margin-bottom: -0.2em;
+        }
+
+        .timeline-org .organization-name {
+            font-style: italic;
+        }
+
+        .timeline-org .location-name {
+            font-style: normal;
+            font-weight: 500;
         }
 
         .timeline-description {
@@ -869,19 +877,22 @@
                     title: "Research Intern",
                     organization: "Shanghai AI Laboratory",
                     date: "Jun. 2025 - Present",
-                    description: "Research focus: Long/Online Video Understanding, Multimodal Embeddings, and Multimodal Reasoning."
+                    description: "Topic: Long/Online Video Understanding, Multimodal Embeddings, and Multimodal Reasoning.",
+                    location: "Shanghai, China"
                 },
                 {
                     title: "Research Associate",
                     organization: "S-Lab, Nanyang Technological University",
                     date: "May 2024 - Jun. 2025",
-                    description: "Research focus: Large Vision-Language Models with Token Compression techniques."
+                    description: "Topic: Large Vision-Language Models with Token Compression techniques.",
+                    location: "Singapore"
                 },
                 {
                     title: "Research Intern",
                     organization: "vivo AI Lab",
                     date: "Mar. 2023 - Nov. 2023",
-                    description: "Research focus: Parameter-Efficient Fine-tuning and Vision-Language Models (CLIP-style)."
+                    description: "Topic: Parameter-Efficient Fine-tuning and Vision-Language Models (CLIP-style).",
+                    location: "Shenzhen, China"
                 }
             ],
             awards: [
@@ -1025,7 +1036,10 @@
                         <div class="timeline-title">${exp.title}</div>
                         <div class="timeline-date">${exp.date}</div>
                     </div>
-                    <div class="timeline-org">${exp.organization}</div>
+                    <div class="timeline-org" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="organization-name">${exp.organization}</span>
+                        ${exp.location ? `<span class="location-name" style="color: #666;">${exp.location}</span>` : ''}
+                    </div>
                     <div class="timeline-description">${exp.description}</div>
                 </div>
             `).join('');
